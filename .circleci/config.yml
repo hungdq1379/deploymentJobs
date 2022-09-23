@@ -12,10 +12,14 @@ jobs:
         - image: amazon/aws-cli
       steps:
         - checkout
-        - aws-cli/setup:
-             aws-access-key-id: AWS_ACCESS_KEY
-             aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-             aws-region: AWS_REGION
+        - run:
+            name: Run aws configure set AWS_ACCESS_KEY AWS_SECRET_ACCESS_KEY
+            command: |
+              aws configure set ${AWS_ACCESS_KEY} ${AWS_SECRET_ACCESS_KEY}
+        - run:
+            name: Run aws configure set default.region us-west-1
+            command: |
+              aws configure set default.region #{AWS_REGION}
         - run:
             name: Create Cloudformation Stack
             command: |
