@@ -19,7 +19,7 @@ jobs:
         - run:
             name: Run aws configure set default.region us-west-1
             command: |
-              aws configure set default.region ${AWS_REGION}
+              aws configure set default.region ${AWS_DEFAULT_REGION}
         - run:
             name: Create Cloudformation Stack
             command: |
